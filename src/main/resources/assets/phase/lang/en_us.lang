@@ -1,2 +1,34 @@
 effect.phase.phase=Phased
 potion.effect.phase.phase=Phase-shifting Poiton
+
+phase.help.shiftDown=Press shift to view more
+
+item.phase.prism.name=Pale Lens
+info.item.prism=The crystal lost its capability to store even if tiny amount of EVE after you polished it, so become incredibly easy to be containminated by the background ARad field, resulted to be a good indicator to detect the ARad currently in your world.
+info.item.brief.prism=Changes the color bases on ARad attributes in current chunk.
+
+item.phase.colliculus.name=COLLICULUS
+info.item.colliculus=Requires an ARad Projection Matrix, two ARad-sentive Lens, and a suitable energy source (mainly the Battery) to work.
+info.item.brief.colliculus=Shows ambient attributes base on how you assembled it.
+info.item.colliculus.invalid=You don't have a complete COLLICULUS setup, wearing this will make you blind...
+
+item.phase.matrix.name=Matrix
+info.item.matrix=Multi-tAsked Tool Reconfigurable Integrated eXtension, in short MATRIX, is a universal configure and upgrade bus of all the GenX+ equipment techonologies.
+info.item.brief.matrix=
+info.item.matrix_=This is a reference to the things like BLAST or INFERNAL, not knowing why you scientists always liking to make such a weird name for things you invented.
+
+item.phase.lens.name=ARad-sensitive Lens
+info.item.lens=One of the key components of the COLLICULUS, can convert a tiny amount of ARad to optical changes, which can be then visualized by the Matrix.
+info.item.brief.lens=
+
+item.phase.upgrade_blank.name=Integrated Extension Base
+info.item.upgrade_blank=The very basis of Extensions, can be plugged into the Matrix, though have no effects.
+
+item.phase.upgrade_brightness.name=Brightness Amplifier
+info.item.upgrade_brightness=An amplifier of incoming optical data, can make the COLLICULUS works better in dark area.
+
+item.phase.upgrade_rgb.name=Pseudocolor Remapper
+info.item.upgrade_rgb=Can recolorize incoming optical data, while can also enable the coloring of other aspects.
+
+item.phas.upgrade_color.name=Color Multiplier
+info.item.upgrade_color=Can modify the overall color to the color the Module specified. Craft with Color Picker to specify the color.
