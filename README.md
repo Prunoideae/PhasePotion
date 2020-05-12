@@ -1,5 +1,10 @@
 # Phase Potion
 
+## -1. Be attention!
+This mod is in a fast-pace developing status, so no future release or bug fixes will come out as long as the developing is continued!
+
+I've thought a lot after publishing this mod and decided to make it a full-scaled tech mod with some other aspects, this requires tons of coding and plenty amount of time. As soon as the whole mod is stabilized, I will then try to bump up the version to a latest LTS version.
+
 ## 0. Overview
 
 This is a mod that can lift you out of your infinite pain and sorrow when breaking half your chunked machines and pipes, just to configure a single Thermal Dynamics servo or something like that, and having to placed them back to where it originally to be.
