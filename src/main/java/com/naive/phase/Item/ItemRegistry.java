@@ -38,7 +38,7 @@ public class ItemRegistry {
             Class<?> clazz = item.getFirst();
             Field inst = item.getSecond();
 
-            Block blockInst = (Block) BlockRegistry.blockInsts.get(clazz);
+            Block blockInst = BlockRegistry.blockInsts.get(clazz);
             if (blockInst != null) {
                 final ItemBlock itemInst = new ItemBlock((Block) blockInst);
                 itemInst.setRegistryName(blockInst.getRegistryName());

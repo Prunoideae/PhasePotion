@@ -4,18 +4,25 @@ import com.naive.phase.Auxiliary.Instantiable.Data.Math.Pairs;
 import com.naive.phase.Auxiliary.Instantiable.Data.Math.Range;
 import com.naive.phase.GUI.Interfaces.IGUICallback;
 import com.naive.phase.GUI.Interfaces.IGUIElement;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.ResourceLocation;
 
 public class ElementSlidebar extends GuiElementBase implements IGUIElement {
     private final float min;
     private final float max;
+    private final Minecraft mc;
     private float percent;
     private IGUICallback callback;
+
+    private static final ResourceLocation SLIDER_ELEMENT_TEXTURE = new ResourceLocation("phase:textures/elements/slider.png");
 
 
     public ElementSlidebar(int x, int y, int width, int height, float min, float max) {
         super(-1, x, y, width, height);
         this.min = min;
         this.max = max;
+        this.mc = Minecraft.getMinecraft();
     }
 
 
@@ -26,8 +33,14 @@ public class ElementSlidebar extends GuiElementBase implements IGUIElement {
 
     @Override
     public void render(int x, int y, float partialTicks) {
-        drawRect(this.x, this.y, this.x + width, this.y + height, 0xFFFFFFFF);
-        drawRect((int) (this.x + width * percent), this.y, (int) (this.x + width * percent + 4), this.y + height, 0xFF000000);
+        GlStateManager.color(1, 1, 1, 1);
+        mc.getTextureManager().bindTexture(SLIDER_ELEMENT_TEXTURE);
+        //Background
+        drawTexturedModalRect(this.x, this.y, 0, 0, 6, 10);
+        drawRepeatedTexturedModalRect(this.x + 6, this.y, this.width - 12, this.height, 6, 0, 2, 10);
+        drawTexturedModalRect(this.x + width - 6, this.y, 66, 0, 6, 10);
+        //Slider
+        drawTexturedModalRect(this.x + (int) ((width - 10) * percent), this.y + 1, 0, 10, 10, 8);
     }
 
     @Override
@@ -38,7 +51,7 @@ public class ElementSlidebar extends GuiElementBase implements IGUIElement {
     @Override
     public void onClicked(int mouseX, int mouseY, int mouseButton) {
         int offset = mouseX - x;
-        this.percent = offset / (float) this.width;
+        this.percent = Math.min(1, offset / (float) (this.width - 8));
     }
 
     @Override

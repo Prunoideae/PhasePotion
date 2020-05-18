@@ -1,0 +1,7 @@
+{
+  "parent": "phase:item/multitool",
+  "textures": {
+    "layer0": "phase:items/multitool_handle",
+    "layer1": "phase:items/toolhead_shovel"
+  }
+}

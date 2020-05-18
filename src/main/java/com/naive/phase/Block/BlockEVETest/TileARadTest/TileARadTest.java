@@ -1,4 +1,4 @@
-package com.naive.phase.TileEntity.TileARadTest;
+package com.naive.phase.Block.BlockEVETest.TileARadTest;
 
 import com.naive.phase.Auxiliary.Helper.MathHelper;
 import com.naive.phase.Auxiliary.Instantiable.Data.Math.Range;

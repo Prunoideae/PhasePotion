@@ -5,8 +5,8 @@ import com.naive.phase.Auxiliary.Register.AutomaticRegister;
 import com.naive.phase.Network.NetworkHandler;
 import com.naive.phase.Phase;
 import com.naive.phase.Potion.PotionRegistry;
-import com.naive.phase.Render.GuiHandler;
-import com.naive.phase.Render.Mistuned.MistuneRenderManager;
+import com.naive.phase.GUI.GuiHandler;
+import com.naive.phase.Recipes.CrusherRecipes;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -28,6 +28,8 @@ public class CommonProxy {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        CrusherRecipes.init();
     }
 
     public void postInit(FMLPostInitializationEvent event) {

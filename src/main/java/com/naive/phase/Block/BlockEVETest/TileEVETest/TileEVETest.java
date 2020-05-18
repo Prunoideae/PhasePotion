@@ -1,9 +1,8 @@
-package com.naive.phase.TileEntity.TileEVETest;
+package com.naive.phase.Block.BlockEVETest.TileEVETest;
 
 import com.naive.phase.Auxiliary.Instantiable.Data.Math.Range;
 import com.naive.phase.Auxiliary.Register.Registry;
 import com.naive.phase.Base.Tile.TileEveBase;
-import net.minecraft.nbt.NBTTagCompound;
 
 @Registry.Tile("test_eve")
 public class TileEVETest extends TileEveBase {

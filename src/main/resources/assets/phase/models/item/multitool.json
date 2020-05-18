@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "phase:items/multitool_handle"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "head": 1
+      },
+      "model": "phase:item/multitool_pickaxe"
+    },
+    {
+      "predicate": {
+        "head": 2
+      },
+      "model": "phase:item/multitool_axe"
+    },
+    {
+      "predicate": {
+        "head": 3
+      },
+      "model": "phase:item/multitool_shovel"
+    }
+  ]
+}

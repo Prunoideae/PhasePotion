@@ -25,6 +25,7 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -39,24 +40,6 @@ import java.util.Set;
 public class RenderEvent {
 
     private static TempFrameBuffer tempBuffer;
-
-    @SubscribeEvent
-    public static void onRenderEntity(RenderLivingEvent.Pre event) {
-        GlStateManager.pushMatrix();
-        GlStateManager.disableLighting();
-        if (!(event.getEntity() instanceof EntityPlayer)) {
-            ShaderHelper.useShader(ShaderLib.GAUSS_SHADER);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onPostRenderEntity(RenderLivingEvent.Post event) {
-        if (!(event.getEntity() instanceof EntityPlayer)) {
-            ShaderHelper.releaseShader();
-        }
-        GlStateManager.enableLighting();
-        GlStateManager.popMatrix();
-    }
 
     @SubscribeEvent
     public static void onRenderMistuned(TickEvent.RenderTickEvent event) {

@@ -30,5 +30,8 @@ info.item.upgrade_brightness=An amplifier of incoming optical data, can make the
 item.phase.upgrade_rgb.name=Pseudocolor Remapper
 info.item.upgrade_rgb=Can recolorize incoming optical data, while can also enable the coloring of other aspects.
 
-item.phas.upgrade_color.name=Color Multiplier
+item.phase.upgrade_color.name=Color Multiplier
 info.item.upgrade_color=Can modify the overall color to the color the Module specified. Craft with Color Picker to specify the color.
+
+item.phase.upgrade_enchantment.name=Enchantment Applicator
+info.item.upgrade_enchantment=Apply the so-called "enchantment" to the matrix, sounds absurd but actually works...

@@ -1,9 +1,8 @@
 package com.naive.phase.Block.BlockEVETest;
 
 import com.naive.phase.Auxiliary.Register.Registry;
-import com.naive.phase.Base.Block.PhaseBlockBase;
 import com.naive.phase.Base.Block.PhaseTiledBase;
-import com.naive.phase.TileEntity.TileARadTest.TileARadTest;
+import com.naive.phase.Block.BlockEVETest.TileARadTest.TileARadTest;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

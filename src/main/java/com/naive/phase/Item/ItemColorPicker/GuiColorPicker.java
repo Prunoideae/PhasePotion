@@ -11,11 +11,15 @@ import net.minecraft.util.math.Vec3d;
 
 public class GuiColorPicker extends GuiBase {
     private final ItemStack picker;
-
+    private static final ResourceLocation COLORPICKER_GUI_TEXTURE = new ResourceLocation("phase:textures/gui/colorpicker.png");
     private ElementSlidebar[] slidebars = new ElementSlidebar[3];
 
     public GuiColorPicker(ItemStack picker) {
         this.picker = picker;
+        this.width = 86;
+        this.height = 35;
+        this.xSize = 176;
+        this.ySize = 100;
     }
 
     @Override
@@ -24,7 +28,7 @@ public class GuiColorPicker extends GuiBase {
         Vec3d color = ItemColorPicker.getColor(picker);
 
         for (int i = 0; i < 3; i++) {
-            slidebars[i] = new ElementSlidebar(0, i * 10, 48, 6, 0.0f, 1.0f);
+            slidebars[i] = new ElementSlidebar(16 + this.guiX, 18 + i * 16 + this.guiY, 96, 10, 0.0f, 1.0f);
             addElement(slidebars[i]);
         }
         slidebars[0].setValue((float) color.x);
@@ -34,7 +38,7 @@ public class GuiColorPicker extends GuiBase {
 
     @Override
     protected ResourceLocation getTexture() {
-        return null;
+        return COLORPICKER_GUI_TEXTURE;
     }
 
     @Override

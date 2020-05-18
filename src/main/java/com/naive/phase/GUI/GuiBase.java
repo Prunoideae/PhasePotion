@@ -42,6 +42,7 @@ public abstract class GuiBase extends GuiScreen implements IGUICallback {
         GlStateManager.color(1f, 1f, 1f, 1f);
         if (getTexture() != null) {
             mc.getTextureManager().bindTexture(getTexture());
+            drawTexturedModalRect(guiX, guiY, 0, 0, xSize, ySize);
         }
         super.drawScreen(mouseX, mouseY, partialTicks);
 

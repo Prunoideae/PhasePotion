@@ -65,4 +65,17 @@ public class GuiElementBase extends Gui implements IGUIElement {
     public int getID() {
         return id;
     }
+
+    public void drawRepeatedTexturedModalRect(int x, int y, int width, int height, int texX, int texY, int texWidth, int texHeight) {
+        for (int offX = 0; offX < width; offX += texWidth) {
+            for (int offY = 0; offY < height; offY += texHeight) {
+                drawTexturedModalRect(x + offX, y + offY, texX, texY, texWidth, texHeight);
+            }
+        }
+        if (width % texWidth != 0 || height % texHeight != 0) {
+            drawTexturedModalRect(x + width - (width % texWidth), y, texX, texY, width % texWidth, texHeight);
+            drawTexturedModalRect(x, y + height - (height % texHeight), texX, texY, texWidth, height % texHeight);
+            drawTexturedModalRect(x + width - (width % texWidth), y + height - (height % texHeight), texX, texY, width % texWidth, height % texHeight);
+        }
+    }
 }

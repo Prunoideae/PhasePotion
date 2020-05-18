@@ -1,12 +1,9 @@
 package com.naive.phase.Block.BlockEVETest;
 
 import com.naive.phase.Auxiliary.Register.Registry;
-import com.naive.phase.Base.Block.PhaseBlockBase;
 import com.naive.phase.Base.Block.PhaseTiledBase;
 import com.naive.phase.Render.Mistuned.MistuneRenderManager;
-import com.naive.phase.TileEntity.TileEVETest.TileEVETest;
-import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.block.material.MapColor;
+import com.naive.phase.Block.BlockEVETest.TileEVETest.TileEVETest;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

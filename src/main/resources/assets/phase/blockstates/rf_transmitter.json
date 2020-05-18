@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "facing=up,sender=0":    { "model": "phase:rf_transmitter", "uvlock": true },
+    "facing=down,sender=0":  { "model": "phase:rf_transmitter", "uvlock": true, "x": 180 },
+    "facing=east,sender=0":  { "model": "phase:rf_transmitter", "uvlock": true, "x": 90, "y": 90 },
+    "facing=west,sender=0":  { "model": "phase:rf_transmitter", "uvlock": true, "x": 90, "y": 270 },
+    "facing=south,sender=0": { "model": "phase:rf_transmitter", "uvlock": true, "x": 90, "y": 180 },
+    "facing=north,sender=0": { "model": "phase:rf_transmitter", "uvlock": true, "x": 90 },
+    "facing=up,sender=1":    { "model": "stone_button", "uvlock": true },
+    "facing=down,sender=1":  { "model": "stone_button", "uvlock": true, "x": 180 },
+    "facing=east,sender=1":  { "model": "stone_button", "uvlock": true, "x": 90, "y": 90 },
+    "facing=west,sender=1":  { "model": "stone_button", "uvlock": true, "x": 90, "y": 270 },
+    "facing=south,sender=1": { "model": "stone_button", "uvlock": true, "x": 90, "y": 180 },
+    "facing=north,sender=1": { "model": "stone_button", "uvlock": true, "x": 90 },
+    "inventory": {"model": "phase:rf_transmitter", "x": 180 }
+  }
+}

@@ -26,11 +26,5 @@ public class GuiColliculus extends GuiContainer {
         GlStateManager.color(1, 1, 1, 1);
         mc.getTextureManager().bindTexture(COLLICULUS_GUI_TEXTURE);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-
-        for (int i = 0; i < 7; ++i) {
-            Slot slot = inventorySlots.inventorySlots.get(i);
-            if (slot.getHasStack() && slot.getSlotStackLimit() == 1)
-                drawTexturedModalRect(guiLeft + slot.xPos, guiTop + slot.yPos, 200, 0, 16, 16);
-        }
     }
 }

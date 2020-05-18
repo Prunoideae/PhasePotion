@@ -9,6 +9,7 @@ import com.naive.phase.GUI.GUILib;
 import com.naive.phase.Item.ItemBattery.ItemBattery;
 import com.naive.phase.Item.ItemMatrix.IUpgrade;
 import com.naive.phase.Item.ItemMatrix.ItemMatrix;
+import com.naive.phase.Item.ItemRFBattery.ItemRFBattery;
 import com.naive.phase.Item.ItemUpgrades.ItemBrightnessUpgrade;
 import com.naive.phase.Item.ItemUpgrades.ItemRGBUpgrade;
 import com.naive.phase.Phase;
@@ -25,11 +26,14 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -57,6 +61,8 @@ public class ItemColliculus extends PhaseArmorBase implements IItemColorable {
         if (args == null)
             return;
         ItemStack battery = args.getStackInSlot(0);
+        IEnergyStorage storage = battery.getCapability(CapabilityEnergy.ENERGY, null);
+        float energyPercent = storage == null ? 0 : storage.getEnergyStored() / (float) storage.getMaxEnergyStored();
         ItemStack lensLeft = args.getStackInSlot(1);
         ItemStack lensRight = args.getStackInSlot(2);
         ItemStack matrix = args.getStackInSlot(3);
@@ -64,7 +70,7 @@ public class ItemColliculus extends PhaseArmorBase implements IItemColorable {
         if (world.isRemote) {
             //Get attribute modifiers
 
-            float brightnessMultiplier = 1.f;
+            float brightnessMultiplier = Math.min(.2f, energyPercent) + 0.8f;
             brightnessMultiplier += DataHelper.getUpgradesMatching(matrix, ItemBrightnessUpgrade.class).size() * 0.5f;
 
             boolean hasRGB = DataHelper.hasUpgrade(matrix, ItemRGBUpgrade.class);
@@ -89,10 +95,15 @@ public class ItemColliculus extends PhaseArmorBase implements IItemColorable {
         } else {
             IItemHandler inv = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
             if (world.getWorldTime() % 20 == 0)
-                if (inv == null || inv.getStackInSlot(3).isEmpty() || (inv.getStackInSlot(1).isEmpty() && inv.getStackInSlot(2).isEmpty())) {
+                if (energyPercent <= .1f || inv == null || inv.getStackInSlot(3).isEmpty() || (inv.getStackInSlot(1).isEmpty() && inv.getStackInSlot(2).isEmpty())) {
                     player.addItemStackToInventory(itemStack.copy());
                     itemStack.setCount(0);
+                    return;
                 }
+
+            if (storage != null) {
+                storage.extractEnergy(10 + DataHelper.getExtraEnergyCost(matrix, world, player, itemStack), false);
+            }
         }
     }
 
@@ -126,6 +137,21 @@ public class ItemColliculus extends PhaseArmorBase implements IItemColorable {
         stack.getTagCompound().setTag(TAG_COLOR, color);
     }
 
+    @Override
+    public Vec3d getAppliedColor(ItemStack stack) {
+        NBTTagCompound tag = NBTHelper.getSafe(stack.getTagCompound(), TAG_COLOR);
+        return new Vec3d(
+                NBTHelper.getOrDefault(tag, "h", 1f),
+                NBTHelper.getOrDefault(tag, "s", 1f),
+                NBTHelper.getOrDefault(tag, "b", 1f)
+        );
+    }
+
+    @Override
+    public boolean isHSB() {
+        return true;
+    }
+
     private static class ColliculusInventory implements ICapabilitySerializable<NBTBase> {
         private final IItemHandler inv = new ItemStackHandler(4) {
             @Nonnull
@@ -134,7 +160,7 @@ public class ItemColliculus extends PhaseArmorBase implements IItemColorable {
 
                 switch (slot) {
                     case 0:
-                        if (!(stack.getItem() instanceof ItemBattery) || !inv.getStackInSlot(0).isEmpty())
+                        if (!(stack.getItem() instanceof ItemRFBattery) || !inv.getStackInSlot(0).isEmpty())
                             return stack;
                         else break;
                     case 1:

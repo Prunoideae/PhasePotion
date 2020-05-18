@@ -26,7 +26,7 @@ public class ItemUpgradeBlank extends PhaseItemBase implements IUpgrade {
     }
 
     @Override
-    public int getEnergyCost() {
+    public int getEnergyCost(World world, EntityPlayer player, ItemStack upgrade, ItemStack matrix, ItemStack tool) {
         return 0;
     }
 

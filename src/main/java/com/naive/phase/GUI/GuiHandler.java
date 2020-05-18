@@ -1,6 +1,9 @@
-package com.naive.phase.Render;
+package com.naive.phase.GUI;
 
-import com.naive.phase.GUI.GUILib;
+import com.naive.phase.Base.Item.PhaseTool3Base.ContainerTool3Base;
+import com.naive.phase.Base.Item.PhaseTool3Base.GuiTool3Base;
+import com.naive.phase.Base.Item.PhaseTool3Base.InventoryTool3Base;
+import com.naive.phase.Base.Item.PhaseTool3Base.PhaseTool3Base;
 import com.naive.phase.Item.ItemColliculus.ContainerColliculus;
 import com.naive.phase.Item.ItemColliculus.GuiColliculus;
 import com.naive.phase.Item.ItemColliculus.InventoryColliculus;
@@ -34,6 +37,9 @@ public class GuiHandler implements IGuiHandler {
             case GUILib.GUI_MATRIX:
                 if (stack.getItem() instanceof ItemMatrix)
                     return new ContainerMatrix(player, new InventoryMatrix(stack));
+            case GUILib.GUI_TOOL:
+                if (stack.getItem() instanceof PhaseTool3Base)
+                    return new ContainerTool3Base(player, new InventoryTool3Base(stack));
         }
 
         return null;
@@ -55,6 +61,9 @@ public class GuiHandler implements IGuiHandler {
             case GUILib.GUI_PICKER:
                 if (stack.getItem() == ItemColorPicker.itemInst)
                     return new GuiColorPicker(stack);
+            case GUILib.GUI_TOOL:
+                if (stack.getItem() instanceof PhaseTool3Base)
+                    return new GuiTool3Base(player, new InventoryTool3Base(stack));
         }
 
         return null;

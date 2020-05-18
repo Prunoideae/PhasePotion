@@ -11,5 +11,5 @@ public interface IUpgrade {
 
     void onUseItem(World world, EntityPlayer player, ItemStack upgrade, ItemStack matrix, ItemStack tool);
 
-    int getEnergyCost();
+    int getEnergyCost(World world, EntityPlayer player, ItemStack upgrade, ItemStack matrix, ItemStack tool);
 }

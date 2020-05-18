@@ -11,6 +11,9 @@ import com.naive.phase.Auxiliary.Instantiable.Data.Math.Range;
 import com.naive.phase.Auxiliary.Magic.EVE.CapabilityEVE;
 import com.naive.phase.Auxiliary.Magic.EVE.Interface.IEVEStorage;
 import com.naive.phase.Auxiliary.Magic.EVE.Interface.IEVEStorageItem;
+import com.naive.phase.Item.ItemMatrix.IUpgrade;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -96,6 +99,18 @@ public class DataHelper {
         return stacks;
     }
 
+    public static ItemStack getFirstUpgrade(ItemStack matrix, Class clazz) {
+        IItemHandler handler = matrix.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+        if (handler != null) {
+            for (int i = 0; i < handler.getSlots(); i++) {
+                ItemStack stack = handler.getStackInSlot(i);
+                if (clazz.isInstance(stack.getItem()))
+                    return stack;
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
     public static boolean hasUpgrade(ItemStack matrix, Class clazz) {
         IItemHandler handler = matrix.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
         if (handler != null) {
@@ -106,5 +121,19 @@ public class DataHelper {
             }
         }
         return false;
+    }
+
+    public static int getExtraEnergyCost(ItemStack matrix, World world, EntityLivingBase living, ItemStack tool) {
+        IItemHandler handler = matrix.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+        int cost = 0;
+        if (handler != null) {
+            for (int i = 0; i < handler.getSlots(); i++) {
+                ItemStack stack = handler.getStackInSlot(i);
+                if (!stack.isEmpty() && stack.getItem() instanceof IUpgrade) {
+                    cost += ((IUpgrade) stack.getItem()).getEnergyCost(world, living instanceof EntityPlayer ? (EntityPlayer) living : null, stack, matrix, tool);
+                }
+            }
+        }
+        return cost;
     }
 }
